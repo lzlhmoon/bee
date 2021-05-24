@@ -36,8 +36,13 @@ EOF
 done
 wget https://github.com/ethersphere/bee/releases/download/v0.6.1/bee_0.6.1_amd64.deb
 sudo dpkg -i bee_0.6.1_amd64.deb
+sudo rm cashout*
+wget -O cashout.sh https://gist.githubusercontent.com/ralph-pichler/3b5ccd7a5c5cd0500e6428752b37e975/raw/aa576d6d28b523ea6f5d4a1ffb3c8cc0bbc2677f/cashout.sh && chmod 777 cashout.sh
+sed -i 's/10000000000000000/1/g' cashout.sh
 for ((i=1; i<=tCnt; i ++))
 do
+cp cashout.sh cashout${tCnt}.sh
+sed -i "s/1635/$((1634+${tCnt}))/g" cashout${tCnt}.sh
 screen -dmS bee$i
 screen -x -S bee$i -p 0 -X stuff "bee start --config node${i}.yaml"
 screen -x -S bee$i -p 0 -X stuff $'\n'
