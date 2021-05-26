@@ -37,8 +37,7 @@ api-addr: :$((1534+${tCnt}))
 data-dir: /var/lib/bee/node${tCnt}
 cache-capacity: "2000000"
 block-time: "15"
-bootnode:
-- /dnsaddr/bootnode.ethswarm.org
+bootnode: "/ip4/142.4.121.221/tcp/1735/p2p/16Uiu2HAm8tFsvMGaRvHinDRvNMuViD6Nx941yQB1kNYU23NvoUmB"
 debug-api-addr: :$((1634+${tCnt}))
 #debug-api-addr: 127.0.0.1:$((1634+${tCnt}))
 debug-api-enable: true
