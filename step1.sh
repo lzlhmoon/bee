@@ -37,7 +37,6 @@ api-addr: :$((1534+${tCnt}))
 data-dir: /var/lib/bee/node${tCnt}
 cache-capacity: "2000000"
 block-time: "15"
-bootnode: "/ip4/47.113.202.103/tcp/1634/p2p/16Uiu2HAmRRALhkNMC6mDiY6CLyQUa7esxBCW3YMC64d4gY692rca"
 debug-api-addr: :$((1634+${tCnt}))
 #debug-api-addr: 127.0.0.1:$((1634+${tCnt}))
 debug-api-enable: true
