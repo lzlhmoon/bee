@@ -8,15 +8,13 @@ exit
 fi
 
 tCnt=`cat $cntFile`
-for ((i=1; i<=tCnt; i ++))
+for ((i=0; i<=tCnt; i ++))
 do
 echo "对第$i个节点添加自动提取。"
 cp /var/lib/bee/node${i}/keys/swarm.key ./keys
 mv ./keys/swarm.key ./keys/${ip}-${i}.key
-echo "00 02 * * * root /root/cashout${i}.sh cashout-all" >> /etc/crontab
-screen -dmS bee$i
-screen -x -S bee$i -p 0 -X stuff "./bee053 start --config node${i}.yaml"
-screen -x -S bee$i -p 0 -X stuff $'\n'
+echo "00 02 * * * root /cashout${i}.sh cashout-all" >> /etc/crontab
+nohup bee start --config node${i}.yaml &
 echo "第$i个节点已启动。"
 screen -ls
 done
