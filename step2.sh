@@ -8,7 +8,7 @@ exit
 fi
 
 tCnt=`cat $cntFile`
-for ((i=0; i<=tCnt; i ++))
+for ((i=1; i<=tCnt; i ++))
 do
 echo "对第$i个节点添加自动提取。"
 cp /var/lib/bee/node${i}/keys/swarm.key ./keys
