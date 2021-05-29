@@ -14,6 +14,6 @@ echo "对第$i个节点添加自动提取。"
 cp /var/lib/bee/node${i}/keys/swarm.key ./keys
 mv ./keys/swarm.key ./keys/${ip}-${i}.key
 echo "00 02 * * * root /cashout${i}.sh cashout-all" >> /etc/crontab
-nohup bee start --config node${i}.yaml &
+nohup bee start --config node${i}.yaml >> /opt/bee${i}.log 2>&1 &
 echo "第$i个节点已启动。"
 done
