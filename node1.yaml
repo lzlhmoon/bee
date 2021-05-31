@@ -1,0 +1,14 @@
+api-addr: :1535
+config: /root/node1.yaml
+bootnode: "/ip4/47.113.202.103/tcp/1634/p2p/16Uiu2HAmRRALhkNMC6mDiY6CLyQUa7esxBCW3YMC64d4gY692rca"
+data-dir: /var/lib/bee/node1
+cache-capacity: "2000000"
+block-time: "15"
+debug-api-addr: :1635
+debug-api-enable: true
+p2p-addr: :1735
+password-file: /var/lib/bee/password
+swap-initial-deposit: "10000000000000000"
+verbosity: 5
+swap-endpoint: http://47.253.61.23:8545
+full-node: true
